@@ -4,7 +4,7 @@ Official implementation for: Modularized Networks for Few-shot Hateful Meme Dete
 This includes an original implementation of "[Modularized Networks for Few-shot Hateful Meme Detection][paper]" by Rui Cao, Roy Ka-Wei Lee, Jing Jiang.
 
 <p align="center">
-  <img src="kgen_arch.PNG" width="80%" height="80%">
+  <img src="mod-hate-arch.PNG" width="80%" height="80%">
 </p>
 
 This code provides:
