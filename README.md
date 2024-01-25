@@ -48,7 +48,13 @@ The code is tested with python 3.9. To run the code, you should install the pack
 We have tested on two hateful meme benchmarks: *Facebook Hateful Meme* dataset [(FHM)][fhm_dataset] and *Multimedia Automatic Misogyny Identification* dataset [(MAMI)][mami_dataset]. The datasets can be download online. If you download dataset, you need to pre-process the datasets follow the code of the [paper][pro_cap]: *Pro-Cap: Leveraging a Frozen Vision-Language Model for Hateful Meme Detection*. Alternatively, you can directly leverage the converted data shared by [Pro-Cap][pro_cap_data]. Noted, they denote MAMI dataset as mimc.
 
 ### Datasets for Module Training
-As mentioned in Section 3.2, we used text-based QA model for the final K-VQA. The images should be converted into texts (i.e., image captions) so that text-based models can comprehend. We adopt a similar approach to [PNP-VQA][pnp-vqa] to generate question-aware captions. When utilizing OPT, we follow the code for [Img2LLM][imgllm] to generate synthetic question-answer pairs as demonstrating examples. The generated captions for OK-VQA can be found in *OK_VQA/large_captions* and the captions for A-OKVQA can be found in *A_OKVQA/aokvqa_val_captions_100.pkl*. The synthetic question answer pairs for OK-VQA can be found in *OK_VQA/ok_vqa_qa_img2llm.pkl* and *A_OKVQA/a-ok_vqa_qa_img2llm.pkl* for A-OKVQA.  
+We trained module capable of relevant tasks for hateful meme detection. Specifically, we focus on three relevant tasks: *hate speech detection*, *meme comprehension* and *hateful meme interpretation*. To train these modules, you need to first prepare data about these tasks. Below are datasets we considered for each task:
+
+- Hate speech detection: we merge three hate speech detection dataset for training the module. Specifically, we leverage [DT][dt_data], WZ[wz_data] and Gab[gab_data] and consider hate speech detection as a generation task.
+- Meme comprehension: we consider the [MemeCap][meme_cap] dataset. Given a meme, the task requires generation of its meaning. Beyond image captioning, the task also calls for recognizing and interpreting visual metaphors with respect to the text inside or around the meme.
+- Hateful meme interpretation: we consider the [HatReD](hatred_data) dataset. Given a hateful meme, it requires generating the underlying hateful contextual reasons.
+
+Alternatively, you can directly use our shared dataset in the *data* folder. *hate-speech* is the data for hate speech detection, *meme-interp* is for meme comprehension, and *hateful-meme-explain* is for explaining hateful memes.
 
 ## Training LoRA modules
 
@@ -77,3 +83,8 @@ Code for using OPT as the text-based question answering model can be found in th
 [mami_dataset]: https://aclanthology.org/2022.semeval-1.74/
 [pro_cap]: https://arxiv.org/abs/2308.08088
 [pro_cap_data]: https://github.com/Social-AI-Studio/Pro-Cap/tree/main/Data
+[dt_data]: https://arxiv.org/abs/1703.04009
+[wz_data]: https://aclanthology.org/N16-2013/
+[gab_data]: https://aclanthology.org/D19-1482/
+[meme_cap]: https://arxiv.org/abs/2305.13703
+[hatred_data]: https://www.ijcai.org/proceedings/2023/0665.pdf
