@@ -1,0 +1,89 @@
+PATH : /common/home/users/r/ruicao.2020/Rui_Data_Space/hate-speech
+DATASET : mem
+SEED : 1111
+SAVE_NUM : 41
+DEBUG : False
+NEG_WORD : Yes
+POS_WORD : No
+max_inference_step : 40
+num_shots : 8
+lora_dir : /common/home/users/r/ruicao.2020/Rui_Data_Space
+lora_modules : hate-exp,meme-captions,hate-speech
+base_model : yahma/llama-7b-hf
+load_8bit : False
+batch_size : 16
+micro_batch_size : 4
+logging_steps : 5
+save_total_limit : 5
+warmup_steps : 100
+num_epochs : 2
+learning_rate : 0.0005
+cutoff_len : 256
+use_gradient_checkpointing : False
+group_by_length : False
+fp16 : True
+lora_r : 8
+lora_alpha : 16
+lora_dropout : 0.05
+target_modules : .*language_model.*\.(q_proj|v_proj)
+train_on_inputs : False
+eval_step : 50
+gen_step : 200
+gen_start : 350
+val_set_size : 500
+save_step : 100
+output_dir : /common/home/users/r/ruicao.2020/Rui_Data_Space/hate-models
+resume_from_checkpoint : None
+temperature : 0.5
+top_p : 0.75
+top_k : 40
+num_beams : 4
+max_new_tokens : 128
+Number of module list in total: 3
+	The 0-th module: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/hate-exp
+	The 1-th module: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/meme-captions
+	The 2-th module: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/hate-speech
+0-th iteration, loss 4.88
+0-th iteration, loss 2.37
+0-th iteration, loss 5.46
+0-th iteration, loss 0.27
+0-th iteration, loss 0.26
+0-th iteration, loss 0.33
+0-th iteration, loss 0.27
+0-th iteration, loss 0.26
+0-th iteration, loss 0.31
+0-th iteration, loss 0.27
+0-th iteration, loss 0.28
+0-th iteration, loss 0.28
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+0-th iteration, loss 0.29
+Module name: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/hate-exp, module weight 0.414060
+Module name: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/meme-captions, module weight 0.000430
+Module name: /common/home/users/r/ruicao.2020/Rui_Data_Space/LoRA/hate-speech, module weight 0.488918
+AUC 64.19, Acc 58.00
