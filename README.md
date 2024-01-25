@@ -45,7 +45,7 @@ The code is tested with python 3.9. To run the code, you should install the pack
 ## Prepare Datasets
 
 ### Datasets for Hateful Meme Detection
-We have tested on two hateful meme benchmarks: *Facebook Hateful Meme* dataset (FHM)[fhm_dataset] and *Multimedia Automatic Misogyny Identification* dataset (MAMI)[mami_dataset]. The datasets can be download online. If you download dataset, you need to pre-process the datasets follow the code of the paper: *Pro-Cap: Leveraging a Frozen Vision-Language Model for Hateful Meme Detection*[pro_cap]. Alternatively, you can directly leverage the converted data shared by **Pro-Cap**[pro_cap_data]. Noted, they denote MAMI dataset as mimc.
+We have tested on two hateful meme benchmarks: *Facebook Hateful Meme* dataset (FHM)[fhm_dataset] and *Multimedia Automatic Misogyny Identification* dataset (MAMI)[MAMI]. The datasets can be download online. If you download dataset, you need to pre-process the datasets follow the code of the paper: *Pro-Cap: Leveraging a Frozen Vision-Language Model for Hateful Meme Detection*[pro_cap]. Alternatively, you can directly leverage the converted data shared by **Pro-Cap**[pro_cap_data]. Noted, they denote MAMI dataset as mimc.
 
 ### Datasets for Module Training
 As mentioned in Section 3.2, we used text-based QA model for the final K-VQA. The images should be converted into texts (i.e., image captions) so that text-based models can comprehend. We adopt a similar approach to [PNP-VQA][pnp-vqa] to generate question-aware captions. When utilizing OPT, we follow the code for [Img2LLM][imgllm] to generate synthetic question-answer pairs as demonstrating examples. The generated captions for OK-VQA can be found in *OK_VQA/large_captions* and the captions for A-OKVQA can be found in *A_OKVQA/aokvqa_val_captions_100.pkl*. The synthetic question answer pairs for OK-VQA can be found in *OK_VQA/ok_vqa_qa_img2llm.pkl* and *A_OKVQA/a-ok_vqa_qa_img2llm.pkl* for A-OKVQA.  
@@ -74,6 +74,6 @@ Code for using OPT as the text-based question answering model can be found in th
 
 
 [fhm_dataset]: https://arxiv.org/abs/2005.04790
-[mami_dataset]: https://aclanthology.org/2022.semeval-1.74/
+[MAMI]: https://aclanthology.org/2022.semeval-1.74/
 [pro_cap]: https://arxiv.org/abs/2308.08088
 [pro_cap_data]: https://github.com/Social-AI-Studio/Pro-Cap/tree/main/Data
