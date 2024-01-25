@@ -65,17 +65,19 @@ Besides using the scripts for training LoRA modules yourself, you can also direc
 
 
 ### Modularized Networks for Hateful Meme Detection
-We finally incoporate our generated knowledge into text-based question-answering models, to show the effectiveness of generated knowledge. We tested three text-based question answering models: UnifiedQa, OPT and GPT-3.
+Based on the trained LoRA modules (*LoRA_modules/hate-speech* for hate speech detection, *LoRA_modules/meme-captions* for meme comprehension and *LoRA_modules/hate-exp* for hateful meme interpretation), we learn composed networks. **Do make sure the path of datasets is set properly (the path on your own matchine)!!!**
 
 ### Step 1: Module Composition
-Code can be found in [src/unifiedQA](src/unifiedQA), which is for the 3B version of UnifiedQA. For the answers for OK-VQA, please apply code in [src/unifiedQA/Ans_Norm.ipynb](src/unifiedQA/Ans_Norm.ipynb) to conduct answer normalization. Predicted answers are also included in the [src/unifiedQA](src/unifiedQA) folder.
+The learning of the composition of modules is largely based on [LoRAHub][lorahub_code]. We greatly appreciate the work of LoRAHub. By running *src/lora_learning.py*, we learn a module composer, assigning importance scores over each trained module.
 
 ### Step 2: Experiments
-Code for using OPT as the text-based question answering model can be found in the [src/opt](src/opt) folder.
+Based on the learned importance scores, the modularized networks is learned by weighted averaging learnt modules. Then, we can test the few-shot capabilities regarding the hateful meme detection task. You can test with the script [src/new_lora.sh](src/new_lora.sh) by:
+```bash
+bash new_lora.sh
+```
+You can also see the logging file of our reported performance in the paper in the folder *src/shot_4_LoRA* and *src/shot_8_LoRA*.
 
-
-
-
+[paper]: https://arxiv.org/abs/2005.04790
 [fhm_dataset]: https://arxiv.org/abs/2005.04790
 [mami_dataset]: https://aclanthology.org/2022.semeval-1.74/
 [pro_cap]: https://arxiv.org/abs/2308.08088
@@ -85,3 +87,4 @@ Code for using OPT as the text-based question answering model can be found in th
 [gab_data]: https://aclanthology.org/D19-1482/
 [meme_cap]: https://arxiv.org/abs/2305.13703
 [hatred_data]: https://www.ijcai.org/proceedings/2023/0665.pdf
+[lorahub_code]: https://github.com/sail-sg/lorahub
