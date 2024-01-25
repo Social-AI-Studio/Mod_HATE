@@ -32,8 +32,6 @@ If you find our code or paper useful, please cite the paper:
     * [Datasets for Hateful Meme Detection](#datasets-for-hateful-meme-detection)
     * [Datasets for Module Training](#datasets-for-module-training) 
 4. [Training LoRA modules](#training-lora-modules) (Section 4.2 of the paper)
-    * [Step 1: Data Conversion](#step-1-data-conversion) 
-    * [Step 2: Module Training](#step-2-module-training) 
 5. [Modularized Networks for Hateful Meme Detection](#modularized-networks-for-hateful-meme-detection) (Section 4.3 and Section 5 of the paper)
     * [Step 1: Module Composition](#step-1-module-composition) 
     * [Step 2: Experiments](#step-2-experiments)   
@@ -50,7 +48,7 @@ We have tested on two hateful meme benchmarks: *Facebook Hateful Meme* dataset [
 ### Datasets for Module Training
 We trained module capable of relevant tasks for hateful meme detection. Specifically, we focus on three relevant tasks: *hate speech detection*, *meme comprehension* and *hateful meme interpretation*. To train these modules, you need to first prepare data about these tasks. Below are datasets we considered for each task:
 
-- Hate speech detection: we merge three hate speech detection dataset for training the module. Specifically, we leverage [DT][dt_data], WZ[wz_data] and Gab[gab_data] and consider hate speech detection as a generation task.
+- Hate speech detection: we merge three hate speech detection dataset for training the module. Specifically, we leverage [DT][dt_data], [WZ][wz_data] and [Gab][gab_data] and consider hate speech detection as a generation task.
 - Meme comprehension: we consider the [MemeCap][meme_cap] dataset. Given a meme, the task requires generation of its meaning. Beyond image captioning, the task also calls for recognizing and interpreting visual metaphors with respect to the text inside or around the meme.
 - Hateful meme interpretation: we consider the [HatReD](hatred_data) dataset. Given a hateful meme, it requires generating the underlying hateful contextual reasons.
 
@@ -58,13 +56,12 @@ Alternatively, you can directly use our shared dataset in the *data* folder. *ha
 
 ## Training LoRA modules
 
-Here we describe how we generate relevant knowledge for questions by prompting GPT-3 (details in Section 3.1). Specifically, we prompt GPT-3 with demonstrations in *OK_VQA/demonstrations.txt* to initialize one piece of knowledge for each question. Then we diversify knowledge with the self-supervised knowledge diversification technique.
+After preparing all data for relevant tasks, we train individual modules for each task. We leverage the parameter-efficient technique, *low-rank adaptation* (LoRA), to tune the large language model, LLaMA and regard the LoRA module as the module capable of each task. To obtain train the modules, please run the script in [src/individual_mode.sh](src/individual_mode.sh):
+```bash
+bash individual_mode.sh
+```
 
-### Step 1: Data Conversion
-We leverage the in-context learning capability of GPT-3 and prompt it with a few-demonstrations. You can try to generate initialized knowledge with the help of GPT-3. The code for initialization can be found in [src/kb-gen/knowledge-initialization.ipynb](src/kb-gen/knowledge-initialization.ipynb).
-
-### Step 2: Module Training
-We next diversify generated knowledge with self-supervised diversification technique. The code can be found in [src/kb-gen/knowledge-diversification.ipynb](src/kb-gen/knowledge-diversification.ipynb). Alternatively, you can directly leverage our generated knowledge for OK-VQA and A-OKVQA in the folder [src/OK_VQA/cluster_generated_kb](src/OK_VQA/cluster_generated_kb) and [src/A_OKVQA/cluster_generated_kb](src/A_OKVQA/cluster_generated_kb) respectively.
+Besides using the scripts for training LoRA modules yourself, you can also directly use our provided trained LoRA modules in the *LoRA_modules* folder. **Do make sure the path of datasets is set properly (the path on your own matchine)!!!**
 
 
 ### Modularized Networks for Hateful Meme Detection
