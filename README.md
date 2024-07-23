@@ -77,7 +77,7 @@ bash new_lora.sh
 ```
 You can also see the logging file of our reported performance in the paper in the folder *src/shot_4_LoRA* and *src/shot_8_LoRA*.
 
-[paper]: https://arxiv.org/abs/2005.04790
+[paper]: https://arxiv.org/pdf/2402.11845
 [fhm_dataset]: https://arxiv.org/abs/2005.04790
 [mami_dataset]: https://aclanthology.org/2022.semeval-1.74/
 [pro_cap]: https://arxiv.org/abs/2308.08088
