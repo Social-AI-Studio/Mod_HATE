@@ -15,11 +15,16 @@ Please leave issues for any questions about the paper or the code.
 
 If you find our code or paper useful, please cite the paper:
 ```
-@inproceedings{ caojiang2024kgenvqa,
-    title={Knowledge Generation for Zero-shot Knowledge-based VQA},
-    author={ Rui Cao, Jing Jiang},
-    journal={EACL},
-    year={ 2024 }
+@inproceedings{DBLP:conf/www/0002L024,
+  author       = {Rui Cao and
+                  Roy Ka{-}Wei Lee and
+                  Jing Jiang},
+  title        = {Modularized Networks for Few-shot Hateful Meme Detection},
+  booktitle    = {Proceedings of the {ACM} on Web Conference 2024, {WWW} 2024, Singapore,
+                  May 13-17, 2024},
+  pages        = {4575--4584},
+  publisher    = {{ACM}},
+  year         = {2024}
 }
 ```
 
